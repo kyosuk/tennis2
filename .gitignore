@@ -1,0 +1,10 @@
+.DS_Store
+node_modules
+/dist
+
+# キャッシュ欲しいならここ消して下さい
+*/__pycache__
+
+# パスワードを管理
+password.py
+*/password.py
