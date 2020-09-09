@@ -4,11 +4,13 @@ import cgi
 import MySQLdb
 import pointhyoji
 import pointdef
-from password.password import *
-
+from password import password
 connection = MySQLdb.connect(
-    host="localhost", user="root", password=PASSWORD, db="tennis2"
-)
+    host='localhost',
+    user='root',
+    password=password.PASSWORD,
+    db='tennis2'
+    )
 cursor = connection.cursor(MySQLdb.cursors.DictCursor)
 cursor.execute("SELECT COUNT(`tiecheck`) FROM `score`")
 Tiecheck=cursor.fetchone()['COUNT(`tiecheck`)']

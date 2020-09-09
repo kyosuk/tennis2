@@ -2,13 +2,6 @@ def pointre_win():
     #!C:\Users\yamamoto\AppData\Local\Programs\Python\Python38\python.exe
     #-*- coding: utf -8  -*-
     import pointhyoji
-    import MySQLdb
-    from password.password import *
-
-    connection = MySQLdb.connect(
-    host="localhost", user="root", password=PASSWORD, db="tennis2"
-    )
-    cursor = connection.cursor()
     string = ("""
     <!DOCTYPE html>
     <html lang='ja'>

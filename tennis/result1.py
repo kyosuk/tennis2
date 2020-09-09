@@ -4,10 +4,12 @@ def result1():
     print("Content-Type: text/html\n")
     import MySQLdb
     import result1
-    from password.password import *
-
+    from password import password
     connection = MySQLdb.connect(
-    host="localhost", user="root", password=PASSWORD, db="tennis2"
+    host='localhost',
+    user='root',
+    password=password.PASSWORD,
+    db='tennis2'
     )
     cursor= connection.cursor(MySQLdb.cursors.DictCursor)
 

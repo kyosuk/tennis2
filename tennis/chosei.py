@@ -3,11 +3,13 @@
 print("Content-Type: text/html\n")
 import MySQLdb
 import pointhyoji
-from password.password import *
-
+from password import password
 connection = MySQLdb.connect(
-    host="localhost", user="root", password=PASSWORD, db="tennis2"
-)
+    host='localhost',
+    user='root',
+    password=password.PASSWORD,
+    db='tennis2'
+    )
 string = ("""
 <!DOCTYPE html>
 <html lang='ja'>

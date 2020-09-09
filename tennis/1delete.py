@@ -4,11 +4,13 @@ print("Content-Type: text/html\n")
 import MySQLdb
 import cgi
 import pointdef
-from password.password import *
-
+from password import password
 connection = MySQLdb.connect(
-    host="localhost", user="root", password=PASSWORD, db="tennis2"
-)
+    host='localhost',
+    user='root',
+    password=password.PASSWORD,
+    db='tennis2'
+    )
 cursor= connection.cursor(MySQLdb.cursors.DictCursor)
 form = cgi.FieldStorage()
 def delete():

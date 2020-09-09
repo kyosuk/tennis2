@@ -4,11 +4,13 @@ import MySQLdb
 import pointhyoji
 import cgi
 form = cgi.FieldStorage()
-from password.password import *
-
+from password import password
 connection = MySQLdb.connect(
-    host="localhost", user="root", password=PASSWORD, db="tennis2"
-)
+    host='localhost',
+    user='root',
+    password=password.PASSWORD,
+    db='tennis2'
+    )
 cursor = connection.cursor()
 def force():
     string = ("""

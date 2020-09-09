@@ -3,11 +3,6 @@ def point_win():
     #-*- coding: utf -8  -*-
     import MySQLdb
     import pointhyoji
-    from password.password import *
-
-    connection = MySQLdb.connect(
-                 host="localhost", user="root", password=PASSWORD, db="tennis2"
-                 )
     string = ("""
     <!DOCTYPE html>
     <html lang='ja'>

@@ -1,16 +1,13 @@
 #!C:\Users\yamamoto\AppData\Local\Programs\Python\Python38\python.exe
 #-*- coding: utf -8  -*-
-print("Content-Type: text/html\n")        
-def game1():
+print("Content-Type: text/html\n")    
+    
+def game1(a):
     import MySQLdb
-    from password.password import *
-    connection = MySQLdb.connect(
-    host='localhost',
-    user='root',
-    password='PASSWORD',
-    db='tennis2'
-    )
-    cursor = connection.cursor(MySQLdb.cursors.DictCursor)
+    import result1
+    import pointre_win
+    from password import password
+    cursor = a.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT COUNT(`player1`) FROM `score`")
     player1=cursor.fetchone()['COUNT(`player1`)']
     Player1=int(player1)
@@ -29,7 +26,7 @@ def game1():
         elif Player1game==6 and Player2game==6:
             cursor.execute("INSERT INTO score(tiecheck) VALUES (1)")
             cursor.execute("INSERT INTO score(tiecheck) VALUES (1)")
-            connection.commit()
+            a.commit()
             returntiebreak()
         elif Player1game==7 or Player2game==7:
             result1.result1()
@@ -37,16 +34,11 @@ def game1():
             pointre_win.pointre_win()           
     else:
         pointre_win.pointre_win()
-def game2():
+def game2(a):
     import MySQLdb
-    from password.password import *
-    connection = MySQLdb.connect(
-    host='localhost',
-    user='root',
-    password='PASSWORD',
-    db='tennis2'
-    )
-    cursor = connection.cursor(MySQLdb.cursors.DictCursor)
+    import result1
+    import point_win
+    cursor = a.cursor(MySQLdb.cursors.DictCursor)
     cursor.execute("SELECT COUNT(`player1`) FROM `score`")
     player1=cursor.fetchone()['COUNT(`player1`)']
     Player1=int(player1)
@@ -65,7 +57,7 @@ def game2():
         elif Player1game==6 and Player2game==6:
             cursor.execute("INSERT INTO score(tiecheck) VALUES (1)")
             cursor.execute("INSERT INTO score(tiecheck) VALUES (1)")
-            connection.commit()
+            a.commit()
             returntiebreak()
         elif Player1game==7 or Player2game==7:
             result1.result1()
@@ -77,12 +69,12 @@ def returntiebreak():
     import pointre_win
     import point_win
     import result1
-    from password.password import *
     import MySQLdb
+    from password import password
     connection = MySQLdb.connect(
     host='localhost',
     user='root',
-    password='PASSWORD',
+    password=password.PASSWORD,
     db='tennis2'
     )
     cursor = connection.cursor(MySQLdb.cursors.DictCursor)
@@ -110,10 +102,11 @@ def servetiebreak():
     import point_win
     import result1
     import MySQLdb
+    from password import password
     connection = MySQLdb.connect(
     host='localhost',
     user='root',
-    password='PASSWORD',
+    password=password.PASSWORD,
     db='tennis2'
     )
     cursor= connection.cursor(MySQLdb.cursors.DictCursor)    
@@ -142,11 +135,11 @@ def servepointcheck():
     import pointre_win
     import result1
     import MySQLdb
-    from password.password import *
+    from password import password
     connection = MySQLdb.connect(
     host='localhost',
     user='root',
-    password='PASSWORD',
+    password=password.PASSWORD,
     db='tennis2'
     )
     cursor = connection.cursor(MySQLdb.cursors.DictCursor)
@@ -162,7 +155,6 @@ def servepointcheck():
     cursor.execute("SELECT COUNT(`player2`) FROM `setscore`")
     player2game=cursor.fetchone()['COUNT(`player2`)']
     Player2game=int(player2game)
-    
     if Player1>3:
         if abs(Player1-Player2)>1:
             cursor.execute("DELETE FROM score")
@@ -174,7 +166,7 @@ def servepointcheck():
             cursor.execute("SELECT COUNT(`player2`) FROM `setscore`")
             player2game=cursor.fetchone()['COUNT(`player2`)']
             Player2game=int(player2game)
-            game1()
+            game1(connection)
         else:
             point_win.point_win()
     elif Player2>3:
@@ -188,21 +180,22 @@ def servepointcheck():
             cursor.execute("SELECT COUNT(`player2`) FROM `setscore`")
             player2game=cursor.fetchone()['COUNT(`player2`)']
             Player2game=int(player2game)
-            game1()
+            game1(connection)
         else:
             point_win.point_win()
     else:
-        point_win.point_win()   
+        point_win.point_win() 
+        
 def returnpointcheck():
     import point_win
     import pointre_win
     import result1
     import MySQLdb
-    from password.password import *
+    from password import password
     connection = MySQLdb.connect(
     host='localhost',
     user='root',
-    password='PASSWORD',
+    password=password.PASSWORD,
     db='tennis2'
     )
     cursor = connection.cursor(MySQLdb.cursors.DictCursor)
@@ -230,7 +223,7 @@ def returnpointcheck():
             cursor.execute("SELECT COUNT(`player2`) FROM `setscore`")
             player2game=cursor.fetchone()['COUNT(`player2`)']
             Player2game=int(player2game)
-            game2()
+            game2(connection)
         else:
             pointre_win.pointre_win()
     elif Player2>3:
@@ -244,8 +237,8 @@ def returnpointcheck():
             cursor.execute("SELECT COUNT(`player2`) FROM `setscore`")
             player2game=cursor.fetchone()['COUNT(`player2`)']
             Player2game=int(player2game)
-            game2()
+            game2(connection)
         else:
             pointre_win.pointre_win()
     else:
-        pointre_win.pointre_win()                
+        pointre_win.pointre_win()   
